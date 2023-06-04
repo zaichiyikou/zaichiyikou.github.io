@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>刘恒的个人简介</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/all.css">
+    <!-- 引入暗色模式图标库 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        body .shell-main-nav ul .nav-box {
+            left: 315px;
+        }
+
+        body .shell-main {
+            margin-bottom: 0;
+
+        }
+
+        body .shell-main-nav {
+            top: 0;
+            left: 0;
+            right: 0;
+            margin-bottom: 0;
+        }
+
+        /* 切换按钮 */
+        .switch {
+            border: 1px solid #c4c7ce;
+            width: 60px;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6px;
+            border-radius: 15px;
+            cursor: pointer;
+            position: fixed;
+            top: 85%;
+            right: 1.9%;
+            z-index: 9999;
+            /* 将z-index属性的值设置为9999 */
+            background-color: #fff;
+            /* 将背景颜色设置为白色 */
+
+        }
+
+        html,
+        img {
+            transition: filter 0.5s ease-out;
+            filter: invert(0);
+        }
+
+        .dark html,
+        .dark img {
+            filter: invert(1);
+        }
+
+        /* 滑块 */
+        .switch::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #4e6ef2;
+            position: absolute;
+            left: 3px;
+            transition: 0.2s ease-out;
+
+        }
+
+        .switch.dark::before {
+            left: 54%;
+        }
+
+        /* 图标 */
+        .switch .fa {
+            font-size: 18px;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 暗色模式 -->
+    <div class="switch">
+        <i class="fa fa-sun-o"></i>
+        <i class="fa fa-moon-o"></i>
+    </div>
+
+    <div class="shell">
+        <div class="shell-main">
+            <div class="shell-main-nav">
+                <div class="logo">
+                    <img src="./image/logo.jpg" alt="">
+                    <span>刘恒</span>
+                </div>
+                <ul>
+                    <li><a href="./index.html">首页</a></li>
+                    <li><a href="./xihao.html">喜好</a></li>
+                    <li><a href="./jianjie.html">个人简介</a></li>
+                    <li><a href="./baozhang.html">宝藏</a></li>
+                    <div class="nav-box"></div>
+                </ul>
+            </div>
+        </div>
+        <h2>下面是一些个人简介</h2>
+        <h3>姓名：刘恒 性别：男 </h3>
+        <h3>年龄：19岁 民族：汉族 </h3>
+        <h3>政治面貌：共青团员</h3>
+        <h3>社会实践经历：房屋普查，协助核酸检测，养老金发放统计</h3>
+        <h3>商赛经历：参加过普华永道比赛，高顿线上实习，大信IPO审计实习生计划等</h3>
+        <h3>能力证书：普通话证书 四级英语 计算机二级等</h3>
+        <h3>出生地：安徽省亳州市</h3>
+        <h3>就读经历：现就读于中南财经政法大学信息与安全工程学院的大数据管理与应用专业</h3>
+        <h3>工作经历：曾在服务行业 餐饮行业做过寒暑假工（拥有较佳的与人沟通的能力</h3>
+        <h3>兴趣爱好：读书 音乐 运动等</h3>
+        <h3>本人综合素质佳、意志力较坚强且不轻易放弃每一分希望的人。我现在仍是一名在校生，故对知识与社会经验不够，但本人充满青春的活力。
+具备良好的人品，乐于与人沟通，生活在群体之中，能够与人进行客观直接的沟通，具有较强的团队管理能力和与人合作的精神，能够积极互动努力达成团队的目标。
+忠实做事是我的人生准则，自强不息是本人的追求。</h3>
+        <h2>觉得很有道理的文句</h2>
+        <h3>春风何不与我共作狮子鸣，山岳何不与我共顷天下  --《剑来》</h3>
+        <h3>君子坐而论道，少年起而行之 -----葛洪《抱朴子·用刑》</h3>
+        <h3>生活埋没了我，可我是颗种子</h3>
+    </div>
+    
+    <script>
+
+        // 暗色模式
+        // 切换按钮
+        const btn = document.querySelector('.switch');
+
+        // 检测系统是否开启暗色模式
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // 系统开启了暗色模式，执行暗色模式的代码
+            btn.classList.add('dark');
+            let a = document.createElement('style');
+            a.id = 'aa';
+            a.innerHTML = 'html{background-color:#fff;filter:invert(1);}img{filter:invert(1);}.shell-main-nav{filter:invert(1);}.logo{filter:invert(1);}.logo span{filter:invert(1);}.switch::before{filter:invert(1);} body .shell-main-nav {background: linear-gradient(to right bottom, rgba(0, 0, 0), rgba(0, 0, 0), rgba(0, 0, 0));}body .shell-main-nav ul li a {color: #fff;}';
+            document.head.appendChild(a);
+        } else {
+            // 系统未开启暗色模式，执行默认模式的代码
+            btn.classList.remove('dark');
+            if (document.head.querySelector('#aa')) {
+                document.head.querySelector('#aa').remove();
+            }
+        }
+
+        btn.addEventListener('click', function () {
+            let is_dark = document.querySelector('.switch.dark');
+            if (!is_dark) {
+                // 切换为暗色主题
+                btn.classList.add('dark');
+                let a = document.createElement('style');
+                a.id = 'aa';
+                a.innerHTML = 'html{background-color:#fff;filter:invert(1);}img{filter:invert(1);}.shell-main-nav{filter:invert(1);}.logo{filter:invert(1);}.logo span{filter:invert(1);}.switch::before{filter:invert(1);} body .shell-main-nav {background: linear-gradient(to right bottom, rgba(0, 0, 0), rgba(0, 0, 0), rgba(0, 0, 0));}body .shell-main-nav ul li a {color: #fff;}';
+                document.head.appendChild(a);
+            } else {
+                // 切换为亮色主题
+                btn.classList.remove('dark');
+                if (document.head.querySelector('#aa')) {
+                    document.head.querySelector('#aa').remove();
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

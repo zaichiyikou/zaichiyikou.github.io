@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>刘恒的喜好</title>
+    <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/all.css">
+
+    <!-- 引入暗色模式图标库 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        body .shell-main-nav ul .nav-box {
+            left: 170px;
+        }
+
+        body .shell-main {
+            margin-bottom: 30px;
+        }
+
+        body .shell-main-nav {
+            margin-bottom: 0;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* 上面的竖背景条 */
+        body .shell::before {
+            content: '';
+            width: 250px;
+            height: 100%;
+            background-image: linear-gradient(to bottom, #f09619, #edde5d);
+            position: absolute;
+            transform: translate(-145%, 0);
+            z-index: -999;
+            bottom: 0;
+        }
+
+        /* 下面的竖背景条 */
+        body .shell::after {
+            content: '';
+            width: 250px;
+            height: 100%;
+            background-image: linear-gradient(to bottom, #fccf31, #f55555);
+            position: absolute;
+            transform: translate(145%);
+            z-index: -999;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+            font: 100 20px 'font-R';
+        }
+
+        .sidebar a:hover {
+            color: #4e6ef2;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            padding: 10px;
+            background-color: #4e6ef2;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            z-index: 9999;
+        }
+
+        .wrapper h2 {
+            writing-mode: vertical-lr;
+            text-orientation: upright;
+        }
+
+        .back-to-top:hover {
+
+            background-color: #4e6ef2;
+            cursor: pointer;
+        }
+
+        .show-back-to-top {
+            display: block;
+        }
+
+        /* 切换按钮 */
+        .switch {
+            border: 1px solid #c4c7ce;
+            width: 60px;
+            height: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6px;
+            border-radius: 15px;
+            cursor: pointer;
+            position: fixed;
+            top: 85%;
+            right: 1.9%;
+            z-index: 9999;
+            /* 将z-index属性的值设置为9999 */
+            background-color: #fff;
+            /* 将背景颜色设置为白色 */
+
+        }
+
+        /* 滑块 */
+        .switch::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #4e6ef2;
+            position: absolute;
+            left: 3px;
+            transition: 0.2s ease-out;
+
+        }
+
+        .switch.dark::before {
+            left: 63%;
+        }
+
+        /* 图标 */
+        .switch .fa {
+            font-size: 18px;
+            color: #aaa;
+        }
+
+        .zoomable-image {
+            cursor: pointer;
+        }
+
+        .zoomed-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .zoomed-img img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border: 1px solid #000;
+            border-radius: 20px;
+            margin: 1px;
+            padding: 1px;
+        }
+
+
+        @media (max-width: 600px) {
+            .image-container {
+                flex-direction: column;
+            }
+
+            .button-container {
+                margin-top: 10px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+            }
+
+            .download-button {
+                width: 100%;
+            }
+        }
+
+
+        @keyframes show {
+            0% {
+                opacity: 0.5;
+                width: 0;
+                height: 0;
+            }
+
+            100% {
+                opacity: 0;
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        #scroll-btn {
+            padding: 10px 20px;
+            background-color: #4e6ef2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            /* 将文字居中显示 */
+        }
+
+        #scroll-btn:hover {
+            background-color: #2750f3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 暗色模式 -->
+    <div class="switch">
+        <i class="fa fa-sun-o"></i>
+        <i class="fa fa-moon-o"></i>
+    </div>
+    <!-- 网页跳转 -->
+    <div class="shell">
+        <div class="shell-main">
+            <div class="shell-main-nav">
+                <div class="logo">
+                    <img src="./image/logo.jpg" alt="">
+                    <span>刘恒</span>
+                </div>
+                <ul>
+                    <li><a href="./index.html">刘恒</a></li>
+                    <li><a href="./xihao.html">喜好</a></li>
+                    <li><a href="./jianjie.html">个人简介</a></li>
+                    <li><a href="./baozhang.html">宝藏</a></li>
+                    <div class="nav-box"></div>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 回到顶部按钮 -->
+        <a href="#" class="back-to-top">回到顶部</a>
+
+
+        <!-- 左侧分类跳转面板 -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="#category1">兴趣</a></li>
+                <li><a href="#category2">音乐</a></li>
+                <li><a href="#category3">电影</a></li>
+                <li><a href="#category4">书籍</a></li>
+            </ul>
+        </div>
+
+        <!-- 第一个分类 -->
+        <h8 id="category1">下面是一些个人偏好</h8>
+        <h3>会不断更新不断完善</h3>
+        <h3 id="scroll-btn">联系我</h3>
+        <h2>分享喜好</h2>
+
+
+        <!-- 下载模块 -->
+        <div class="wrapper">
+            <div class="downloads">
+                <h2>
+                    兴趣
+                </h2>
+                <span>对于反手吉他，足球，乒乓球，羽毛球，跑步健身很感兴趣。会在空闲之余专门去做某项运动来放松自己，
+                    感受生活的乐趣。
+                </span>
+            </div>
+        </div>
+
+        <!-- 第二个分类 -->
+        <h2 id="category2">相关音乐</h2>
+        <!-- 下载模块 -->
+        <div class="wrapper">
+            <div class="downloads">
+                <h2>
+                    音乐
+                </h2>
+                <span>
+                    个人比较喜好爵士，美式复古摇滚，粤语歌等，最喜欢的歌是王菲的《梦中人》，喜欢的歌手有王菲 周杰伦 贾斯汀比伯等。
+                    常听的歌有《die for you》,《梦中人》等。
+                </span>
+            </div>
+        </div>
+
+
+
+        <!-- 第三个分类 -->
+        <h2 id="category3">相关电影</h2>
+        <!-- 下载模块 -->
+        <div class="wrapper">
+            <div class="downloads">
+                <h2>
+                    电影
+                </h2>
+                <span>
+                   比较偏好老港片以及一些国外经典影片，平时也会去看科幻一类的影片，总体看的比较杂比较乱。推荐几部影片：
+                   《白日梦想家》，《牧羊人》，《当幸福来敲门》等。
+                </span>
+            </div>
+        </div>
+
+
+        <!-- 第四个分类 -->
+        <h2 id="category4">书籍相关</h2>
+        <!-- 下载模块 -->
+        <div class="wrapper">
+            <div class="downloads">
+                <h2>
+                    书籍
+                </h2>
+                <span>
+                    比较喜欢中外古代名著以及近代的必读书籍，我与书中的人物面对面交流，
+                    让我流连忘返。推荐的书籍：
+                    《道德经》，《人性的弱点》，《百年孤独》。
+                </span>
+            </div>
+        </div>
+
+
+
+
+        
+
+
+
+        <!-- 最下面 -->
+        <div class="shell-main-footer">
+            <span>感兴趣请联系我：</span>
+            <span>lh15056893404@163.com</span>
+        </div>
+
+        <!-- js区 -->
+        <script>
+            // 复制功能
+            function copyToClipboard(text) {
+                var input = document.createElement('input');
+                input.setAttribute('value', text);
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                document.body.removeChild(input);
+                alert('下载地址已复制到剪贴板');
+            }
+
+
+            // 滚动到底部
+            const scrollBtn = document.getElementById('scroll-btn');
+
+            scrollBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
+            });
+
+            // 回到顶部
+
+            var backToTopButton = document.querySelector('.back-to-top');
+
+            window.addEventListener('scroll', function () {
+
+                if (window.pageYOffset > 200) {
+                    backToTopButton.classList.add('show-back-to-top');
+
+                } else {
+                    backToTopButton.classList.remove('show-back-to-top');
+                }
+            });
+
+
+            // 暗色模式
+            // 切换按钮
+            const btn = document.querySelector('.switch');
+
+            // 检测系统是否开启暗色模式
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // 系统开启了暗色模式，执行暗色模式的代码
+                btn.classList.add('dark');
+                let a = document.createElement('style');
+                a.id = 'aa';
+                a.innerHTML = '.shell{background-color:#000;} h2{color:#fff;} h3{color:#fff;} h8{color:#fff;} p{color:#fff;} span{color:#fff;} .sidebar {background-color: #000000;} .sidebar a {color: #ffffff;} body .shell-main-nav {background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);}body .shell-main-nav ul li a {color: #fff;}.switch{background-color: #000;}.downloads {border: 2px solid #fff;} .image-container img {border: 1px solid #fff;}';
+                document.head.appendChild(a);
+            } else {
+                // 系统未开启暗色模式，执行默认模式的代码
+                btn.classList.remove('dark');
+                if (document.head.querySelector('#aa')) {
+                    document.head.querySelector('#aa').remove();
+                }
+            }
+
+            btn.addEventListener('click', function () {
+                let is_dark = document.querySelector('.switch.dark');
+                if (!is_dark) {
+                    // 切换为暗色主题
+                    btn.classList.add('dark');
+                    let a = document.createElement('style');
+                    a.id = 'aa';
+                    a.innerHTML = '.shell{background-color:#000;} h2{color:#fff;} h3{color:#fff;} h8{color:#fff;} p{color:#fff;} span{color:#fff;} .sidebar {background-color: #000000;} .sidebar a {color: #ffffff;} body .shell-main-nav {background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);}body .shell-main-nav ul li a {color: #fff;}.switch{background-color: #000;}.downloads {border: 2px solid #fff;} .image-container img {border: 1px solid #fff;}';
+                    document.head.appendChild(a);
+                } else {
+                    // 切换为亮色主题
+                    btn.classList.remove('dark');
+                    if (document.head.querySelector('#aa')) {
+                        document.head.querySelector('#aa').remove();
+                    }
+                }
+            })
+
+
+
+            // 图片放大功能
+            // 获取所有的图片元素
+            var images = document.querySelectorAll('.zoomable-image');
+            // 为每个图片元素添加点击事件
+            images.forEach(function (image) {
+                image.addEventListener('click', function () {
+                    // 创建一个新的div元素，用于显示放大后的图片
+                    var zoomedImg = document.createElement('div');
+                    zoomedImg.classList.add('zoomed-img');
+                    // 创建一个新的img元素，用于显示放大后的图片
+                    var img = document.createElement('img');
+                    img.src = this.src;
+                    // 将img元素添加到zoomedImg元素中
+                    zoomedImg.appendChild(img);
+                    // 将zoomedImg元素添加到页面中
+                    document.body.appendChild(zoomedImg);
+                    // 添加点击事件，点击zoomedImg元素时，将其从页面中移除
+                    zoomedImg.addEventListener('click', function () {
+                        document.body.removeChild(zoomedImg);
+                    });
+                });
+            });
+        </script>
+
+    </div>
+</body>
+
+</html>
